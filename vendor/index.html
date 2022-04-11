@@ -1,0 +1,265 @@
+<?php 
+  include ('config-index.php');
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Feito Brique - Seu portal de veículos</title>
+   <meta charset="utf-8">
+   <meta name="description" content="Feito Brique - Seu portal de veículos perfeito para divulgação de automóveis e serviços automotivos do extremo oeste, faça parte e feche um brique!"/>
+   <meta name="keywords" content="Feito Brique, feito o brique, brique, revenda de veículos, revenda de carros, serviços de carros, serviços automotivos, automoveis, veiculos usádos,semi-novos, São Miguel do Oeste,
+    Bandeirante, Guaraciaba, SC, Peperi, portal,carros, motos, caminhões, tratores, usados, novos, automobilismo, mercado, Santa Catarina, Rio Grande do Sul, automóveis, veículos, motor, notícias, classificados, grátis">
+   <meta name="robots" content="index,follow">
+   <meta name="athor" content="Feito Brique">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta http-equiv="refresh" content="120">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Ícone -->
+    <link rel="shortcut icon" href="#">
+ 
+    <!-- Teste Modelo Azul - Aumentar velocidade: -->
+    <!-- **************************************** 
+   <link href="css/cssAzul_Azul.css" rel="stylesheet">
+   <link href="css/card.css" rel="stylesheet"-->
+    <!-- **************************************** -->
+  
+  
+  
+  <link href="css/bootstrap.css" rel="stylesheet">
+
+  <!--  CSS Do Biscoito
+  <link rel ="stylesheet" href="css/cookies.css ">
+  -->
+    <link href="css/flexslider.css" rel="stylesheet">
+    <!--<link href="css/font-awesome.min.css" rel="stylesheet">-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link href="css/<?php echo $estilo; ?>" rel="stylesheet">
+    <link href="css/<?php echo $card; ?>" rel="stylesheet">
+    <!--<link rel="shortcut icon" type="image/x-icon" href="imgs/favicon2.ico">-->
+    <link rel="shortcut icon" type="image/x-icon" href="imgs/icone.png">
+    <!-- FontAwesome para ícones -->
+    <script src="https://kit.fontawesome.com/2b55b5860a.js" crossorigin="anonymous"></script>
+    <style>
+
+#Pesquisa {
+  height: 28px;
+  border: none;
+  outline: none;
+  padding-left: 15px;
+  width: 0;
+  position: absolute;
+  top: none;
+  left: 0;
+  border-radius: 3px;
+  width: 25%;
+  background: white;
+
+}
+
+</style>
+</head>
+
+<body>
+
+    <!-- preloader -->
+    <div id="preloader-bg" style="display: none;">
+        <div id="preloader" style="display: none;"></div>
+    </div>
+
+    <header>
+        <div class="topbar">
+            <div class="container">
+                <ul>
+          <li>
+
+            <form action="" method="get">
+               <div class="">
+               <input type="hidden"  id="pg" name="pg" value="Veiculos">
+              <input type="search" style="color: black;" placeholder="Pesquisar" id="Pesquisa" name="Pesquisa">
+              
+               </div>   
+            </form>
+                   </li>
+
+                    <!--<li><i class="fas fa-phone" aria-hidden="true"></i> <?php echo @$dadosEmpresa["telefone1"]; ?>  </li>
+                    <li><i class="fas fa-envelope" aria-hidden="true" style="font-weight: 400"></i> <?php echo @$dadosEmpresa["email"];?></li> -->
+                    <li><i class="fas fa-user" aria-hidden="true" style="font-weight: 400"></i><!--<a href="/admin_cliente/cadastro.php"> Cadastre-se</a> | <a href="/admin_cliente/index.php"> Entrar</a>--></li>
+                      
+              </ul>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- tamanho da logo -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Menu Mobile</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                       <!-- <a class="navbar-brand" href="index.php"><img src="<?php echo $logo; ?>" alt="<?php echo @$dadosEmpresa["nome"];?>" height="45px" ></a> -->
+                        <a Class="navbar-brand" href="index.php"><img src="admin/cadastros/perfil/logo/FB.png" height="45px"></a>
+                        
+                        <div id="navbar" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <?php
+                  $ativaPrincipal    = '';
+                  $ativaFiltro       = '';
+                  $ativaVeiculo      = '';
+                  $ativaResultado    = '';
+                  $ativaRevenda      = '';
+                  $ativaContato      = '';
+                  $ativaNoticia      = '';
+                  $ativaServico      = '';
+                  if (isset($_GET["pg"])){
+                  switch ($_GET["pg"]){
+                    case 'Filtro' : $ativaFiltro = 'class="active"'; break;  
+                    case 'Revenda' : $ativaRevenda = 'class="active"'; break;
+                    case 'Contato' : $ativaContato = 'class="active"'; break;
+                    case 'Veiculos' : $ativaVeiculo = 'class="active"'; break;
+                    case 'Noticia' : $ativaNoticia = 'class="active"'; break;
+                    case 'Resultado' : $ativaResultado = 'class="active"'; break;
+                    case 'Politica_Privacidade' : $politicaPrivacidade = 'class="active"'; break;
+                    case 'Servico' : $ativaServico = 'class="active"'; break;
+                    default : $ativaPrincipal = 'class="active"';
+                  }  
+                  }else{
+                    $ativaPrincipal = 'class="active"';
+                  }
+                ?>
+                                <li <?php echo $ativaPrincipal; ?>><a href="index.php">PRINCIPAL</a></li>
+                                <li <?php echo $ativaFiltro; ?>><a href="?pg=Filtro">BUSCA AVANÇADA</a></li>
+                                <li <?php echo $ativaRevenda; ?>><a href="?pg=Revenda">REVENDA</a></li>
+                                <li <?php echo $ativaServico; ?>><a href="?pg=Servico">SERVIÇO</a></li>
+                                <li <?php echo $ativaContato; ?>><a href="?pg=Contato">CONTATO</a></li>
+                                <li <?php echo $ativaNoticia; ?>><a href="?pg=Noticia">NOTÍCIAS</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+
+    <div class="main-div">
+      <?php
+      if (isset($_GET["pg"])){
+       switch($_GET["pg"]){
+          case "Filtro"    : $incluir = "filtro/index.php"; break;
+          case "Veiculos"    : $incluir = "veiculos.php"; break;
+          case "Revenda"    : $incluir = "revenda.php"; break;
+          case "Detalhes"    : $incluir = "detalhes.php"; break;
+          case "Contato"     : $incluir = "contato/index.php"; break;
+          case "Noticia"    : $incluir = "noticias.php"; break;
+          case "Produtos"     : $incluir = "detalhes.php"; break;
+          case "Revendas"     : $incluir = "dados_Revenda.php"; break;
+          case "Noticias"    : $incluir = "dados_Noticia.php"; break;
+          case "Servico"    : $incluir = "servico.php"; break;
+          case "Resultado"     : $incluir = "filtrar.php"; break;
+          case "Politica_Privacidade"     : $incluir = "politica_privacidade.php"; break;
+         default : $incluir = "veiculos.php"; 
+       }
+        include($incluir);
+      }else{
+        include "veiculos.php";
+              include "exibe_revendas.php";
+      }
+    ?>
+      
+      
+      
+      
+      <!-- Bolinho -->
+  <!--
+
+<div class = " cookies-container ">
+    <div class = " cookies-content ">
+      <p> Permito o uso de cookies para: </p>
+      <div class = " cookies-pref " >
+        <label> <input type = "checkbox" checked  data-function = "analytics"> Análise de Uso </label>
+        <label> <input type = "checkbox" checked  data-function = "marketing"> Marketing </label>
+      </div>
+      <button  class = "cookies-save"> Salvar e Continuar </button>
+    </div>
+</div>
+
+    -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="boxinfo">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <p><img src="imgs/whatsapp.png" alt="" width="20px"><a href="https://api.whatsapp.com/send?phone=5549999574664" target="_blank"> (49) 9 9957-4664</a></p>
+                        <p><img src="imgs/whatsapp.png" alt="" width="20px"><a href="https://api.whatsapp.com/send?phone=5549991418281" target="_blank"> (49) 9 9141-8281 </a></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="boxinfo">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <p><?php echo @$dadosEmpresa["email"];?></p>
+                    </div>
+                </div> 
+                <div class="col-md-4">
+                    <div class="boxinfo">
+                        <i class="fas fa-map-marker" aria-hidden="true"></i>
+                        <p><?php echo utf8_encode( @$dadosEmpresa["endereco"]) . ', Nº'. @$dadosEmpresa["numero"]; ?></p>
+                        <p><?php echo utf8_encode( @$dadosEmpresa["bairro"]) . ' - '. @$dadosEmpresa["cep"];?></p>
+                        <p><?php echo ( "São Miguel do Oeste") . ' - '. ("SC");?></p>                      
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="copy">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                    <hr>
+                        <p>CONHEÇA NOSSA <a href="?pg=Politica_Privacidade"><u>POLÍTICA DE PRIVACIDADE</u></a></p>
+                        <p>Todos os Direitos Reservados  |  2021 © Feito Brique</p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </footer>
+  </div> <!-- Main-DIV -->
+</body>
+<script src="js/jquery.min.js"></script>    
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.flexslider.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
+<script src="js/jquery.js"></script>
+  <script  src= "js/cookies.js" > </script>
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-210466761-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-210466761-1');
+</script>
+
+<!-- Ads -->
+   
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2233111898019719"
+     crossorigin="anonymous"></script>
+  
+
+</html>
